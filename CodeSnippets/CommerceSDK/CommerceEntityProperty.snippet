@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>CommerceEntityProperty</Title>
+      <Author>Jonatan Torino</Author>
+      <Description>Create typed property</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>CmmProp</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.ComponentModel.DataAnnotations</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.DataModel</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Runtime.Serialization</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>PropName</ID>
+          <ToolTip>Asign the property name</ToolTip>
+          <Default>PropName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>PropType</ID>
+          <ToolTip>Asign the property type</ToolTip>
+          <Default>PropType</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Kind="type decl" Delimiter="$"><![CDATA[
+    const string $PropName$Column = "$PropName$";
+    [DataMember]
+    [Column($PropName$Column)]
+    public $PropType$ $PropName$
+    {
+        get { return ($PropType$)this[$PropName$Column]; }
+        set { this[$PropName$Column] = value; }
+    }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>CommerceDatabaseContext</Title>
+      <Author>Jonatan Torino</Author>
+      <Description>Retrieve entity using query</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>CmmDbQuery</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>parmType</ID>
+          <ToolTip>parmType</ToolTip>
+          <Default>string</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>parmName</ID>
+          <ToolTip>parmName</ToolTip>
+          <Default>parmName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>schema</ID>
+          <ToolTip>ext</ToolTip>
+          <Default>ext</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>pagingInfo</ID>
+          <ToolTip>pagingInfo</ToolTip>
+          <Default>AllRecords</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Object Editable="true">
+          <ID>CommerceEntity</ID>
+          <ToolTip>Derived type from CommerceEntity</ToolTip>
+          <Default>CommerceEntity</Default>
+          <Function>
+          </Function>
+          <Type>
+          </Type>
+        </Object>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[        static async Task<$CommerceEntity$> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
+        {
+            $CommerceEntity$ result = null;
+
+            using (DatabaseContext databaseContext = new DatabaseContext(context))
+            {
+                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.$pagingInfo$))
+                {
+                    DatabaseSchema = "$schema$",
+                    From = "$CommerceEntity$",
+                    Where = "$parmName$ = @$parmName$"
+                };
+
+                query.Parameters["@$parmName$"] = $parmName$;
+                PagedResult<$CommerceEntity$> ret = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
+                result = ret.FirstOrDefault();
+            }
+
+            return result;
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
