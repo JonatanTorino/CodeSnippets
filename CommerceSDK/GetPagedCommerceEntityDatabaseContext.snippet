@@ -38,19 +38,19 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL_SSDT" Delimiter="$"><![CDATA[        static async Task<PagedResult<$CommerceEntity$>> GetList$CommerceEntity$(RequestContext context, List<string> $valueSet$)
+      <Code Language="csharp" Delimiter="¿"><![CDATA[        static async Task<PagedResult<¿CommerceEntity¿>> GetList¿CommerceEntity¿(RequestContext context, List<string> ¿valueSet¿)
         {
-            PagedResult<$CommerceEntity$> result = null;
+            PagedResult<¿CommerceEntity¿> result = null;
 
             using (DatabaseContext databaseContext = new DatabaseContext(context))
             {
-                string $valueSet$Parm = $"({string.Join("','", $valueSet$)})";
-                string queryString = $"SELECT * FROM [ext].[{nameof($CommerceEntity$)}] WHERE $Column$ in {$valueSet$Parm}";
+                string ¿valueSet¿Parm = $"({string.Join("','", ¿valueSet¿)})";
+                string queryString = $"SELECT * FROM [ext].[{nameof(¿CommerceEntity¿)}] WHERE ¿Column¿ in {¿valueSet¿Parm}";
 
                 var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.AllRecords));
                 query.QueryString = queryString;
 
-                result = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
+                result = await databaseContext.ReadEntityAsync<¿CommerceEntity¿>(query).ConfigureAwait(false);
             }
 
             return result;
