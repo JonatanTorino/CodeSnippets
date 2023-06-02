@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>GetPagedCommerceEntityDatabaseContext</Title>
+      <Author>Jonatan torino</Author>
+      <Description>Retrieve entity using query string</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>CmmDbGetPagedQuery</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Object Editable="true">
+          <ID>CommerceEntity</ID>
+          <ToolTip>Derived type from CommerceEntity</ToolTip>
+          <Default>CommerceEntity</Default>
+          <Function>
+          </Function>
+          <Type>
+          </Type>
+        </Object>
+        <Literal Editable="true">
+          <ID>valueSet</ID>
+          <ToolTip>List of values for use with "WHERE [Column] in (ValueSet)"</ToolTip>
+          <Default>valueSet</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>Column</ID>
+          <ToolTip>Column</ToolTip>
+          <Default>Column</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="SQL_SSDT" Delimiter="$"><![CDATA[        static async Task<PagedResult<$CommerceEntity$>> GetList$CommerceEntity$(RequestContext context, List<string> $valueSet$)
+        {
+            PagedResult<$CommerceEntity$> result = null;
+
+            using (DatabaseContext databaseContext = new DatabaseContext(context))
+            {
+                string $valueSet$Parm = $"({string.Join("','", $valueSet$)})";
+                string queryString = $"SELECT * FROM [ext].[{nameof($CommerceEntity$)}] WHERE $Column$ in {$valueSet$Parm}";
+
+                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.AllRecords));
+                query.QueryString = queryString;
+
+                result = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
+            }
+
+            return result;
+        }]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

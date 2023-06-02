@@ -5,14 +5,31 @@
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
-      <Title>SqlServerDatabaseContext</Title>
+      <Title>GetPagedCommerceEntitySqlServerDatabaseContext</Title>
       <Author>Jonatan Torino</Author>
       <Description>Retrieve entity using StoreProcedure</Description>
       <HelpUrl>
       </HelpUrl>
-      <Shortcut>CmmDbStoreProcedure</Shortcut>
+      <Shortcut>CmmDbGetPagedStoreProcedure</Shortcut>
     </Header>
     <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.DataAccess.SqlServer</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.DataModel</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
       <Declarations>
         <Literal Editable="true">
           <ID>parmType</ID>
@@ -59,7 +76,7 @@
           </Type>
         </Object>
       </Declarations>
-      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[        static async Task<$CommerceEntity$> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
+      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[        static async Task<PagedResult<$CommerceEntity$>> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
         {
             PagedResult<$CommerceEntity$> result = null;
 
@@ -69,8 +86,8 @@
                 parameters["@$parmName$"] = $parmName$;
 
                 QueryResultSettings queryResultSettings = new QueryResultSettings(PagingInfo.$pagingInfo$);
-                var ret = await databaseContext.ExecuteStoredProcedureAsync<$CommerceEntity$>("$StoreProcedureName$", parameters, queryResultSettings).ConfigureAwait(false);
-                result = ret.FirstOrDefault();
+                var spResult = await databaseContext.ExecuteStoredProcedureAsync<$CommerceEntity$>("$StoreProcedureName$", parameters, queryResultSettings).ConfigureAwait(false);
+                PagedResult<$CommerceEntity$> spCollectionResult = spResult.Item2;
             }
 
             return result;

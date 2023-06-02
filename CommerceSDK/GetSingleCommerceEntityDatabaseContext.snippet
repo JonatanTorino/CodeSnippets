@@ -5,14 +5,31 @@
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
-      <Title>CommerceDatabaseContext</Title>
+      <Title>GetSingleCommerceEntityDatabaseContext</Title>
       <Author>Jonatan Torino</Author>
-      <Description>Retrieve entity using query</Description>
+      <Description>Retrieve entity using SqlPagedQuery object</Description>
       <HelpUrl>
       </HelpUrl>
-      <Shortcut>CmmDbQuery</Shortcut>
+      <Shortcut>CmmDbGetSingleQuery</Shortcut>
     </Header>
     <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.Data</Namespace>
+        </Import>
+        <Import>
+          <Namespace>Microsoft.Dynamics.Commerce.Runtime.DataModel</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Linq</Namespace>
+        </Import>
+        <Import>
+          <Namespace>System.Threading.Tasks</Namespace>
+        </Import>
+      </Imports>
       <Declarations>
         <Literal Editable="true">
           <ID>parmType</ID>
