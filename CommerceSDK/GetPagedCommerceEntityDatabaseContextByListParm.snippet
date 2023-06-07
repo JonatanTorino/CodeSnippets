@@ -5,12 +5,12 @@
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
-      <Title>GetPagedCommerceEntityDatabaseContext</Title>
+      <Title>GetPagedCommerceEntityDatabaseContextByListParm</Title>
       <Author>Jonatan Torino</Author>
-      <Description>Retrieve entity using SqlPagedQuery object</Description>
+      <Description>Retrieve entity using query string</Description>
       <HelpUrl>
       </HelpUrl>
-      <Shortcut>CmmDbGetPagedQuery</Shortcut>
+      <Shortcut>CmmDbGetPagedQueryByListParm</Shortcut>
     </Header>
     <Snippet>
       <Imports>
@@ -24,7 +24,7 @@
           <Namespace>Microsoft.Dynamics.Commerce.Runtime.DataModel</Namespace>
         </Import>
         <Import>
-          <Namespace>System.Linq</Namespace>
+          <Namespace>System.Collections.Generic</Namespace>
         </Import>
         <Import>
           <Namespace>System.Threading.Tasks</Namespace>
@@ -32,30 +32,16 @@
       </Imports>
       <Declarations>
         <Literal Editable="true">
-          <ID>parmType</ID>
-          <ToolTip>parmType</ToolTip>
-          <Default>string</Default>
+          <ID>valueSet</ID>
+          <ToolTip>List of values for use with "WHERE [Column] in (ValueSet)"</ToolTip>
+          <Default>valueSet</Default>
           <Function>
           </Function>
         </Literal>
         <Literal Editable="true">
-          <ID>parmName</ID>
-          <ToolTip>parmName</ToolTip>
-          <Default>parmName</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>schema</ID>
-          <ToolTip>ext</ToolTip>
-          <Default>ext</Default>
-          <Function>
-          </Function>
-        </Literal>
-        <Literal Editable="true">
-          <ID>pagingInfo</ID>
-          <ToolTip>pagingInfo</ToolTip>
-          <Default>AllRecords</Default>
+          <ID>Column</ID>
+          <ToolTip>Column</ToolTip>
+          <Default>Column</Default>
           <Function>
           </Function>
         </Literal>
@@ -69,21 +55,19 @@
           </Type>
         </Object>
       </Declarations>
-      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[        public static async Task<PagedResult<$CommerceEntity$>> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
+      <Code Language="csharp" Delimiter="¿"><![CDATA[        public static async Task<PagedResult<¿CommerceEntity¿>> GetList¿CommerceEntity¿(RequestContext context, List<string> ¿valueSet¿)
         {
-            PagedResult<$CommerceEntity$> result = null;
+            PagedResult<¿CommerceEntity¿> result = null;
 
             using (DatabaseContext databaseContext = new DatabaseContext(context))
             {
-                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.$pagingInfo$))
-                {
-                    DatabaseSchema = "$schema$",
-                    From = "$CommerceEntity$",
-                    Where = "$parmName$ = @$parmName$"
-                };
+                string ¿valueSet¿Parm = $"({string.Join("','", ¿valueSet¿)})";
+                string queryString = $"SELECT * FROM [ext].[{nameof(¿CommerceEntity¿)}] WHERE ¿Column¿ in {¿valueSet¿Parm}";
 
-                query.Parameters["@$parmName$"] = $parmName$;
-                result = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
+                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.AllRecords));
+                query.QueryString = queryString;
+
+                result = await databaseContext.ReadEntityAsync<¿CommerceEntity¿>(query).ConfigureAwait(false);
             }
 
             return result;
