@@ -73,7 +73,7 @@
                     DatabaseSchema = "¿schema¿",
                     From = "¿CommerceEntity¿",
                 };
-                string ¿valueSet¿Parm = $"({string.Join("','", ¿valueSet¿)})";
+                string ¿valueSet¿Parm = $"('{string.Join("','", ¿valueSet¿)}')";
                 string queryString = $"SELECT * FROM [ext].[{nameof(¿CommerceEntity¿)}] WHERE ¿Column¿ in {¿valueSet¿Parm}";
                 query.QueryString = queryString;
 
