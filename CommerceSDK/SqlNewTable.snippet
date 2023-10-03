@@ -22,7 +22,9 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL_SSDT" Delimiter="$"><![CDATA[IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
+      <Code Language="SQL_SSDT" Delimiter="$">
+  <![CDATA[
+IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
 BEGIN
 	DROP TABLE [ext].[$TableName$]
 END
@@ -41,14 +43,13 @@ CREATE TABLE [ext].[$TableName$] (
 
 ALTER TABLE [ext].[$TableName$]
 	WITH CHECK ADD CHECK (([RECID] <> (0)))
-GO
 
+GO
 GRANT SELECT,INSERT,UPDATE,DELETE ON OBJECT::[ext].[$TableName$] TO [UsersRole]
-GO
 GRANT SELECT,INSERT,UPDATE,DELETE ON OBJECT::[ext].[$TableName$] TO [DeployExtensibilityRole]
-GO
 GRANT SELECT,INSERT,UPDATE,DELETE ON OBJECT::[ext].[$TableName$] TO [DataSyncUsersRole]
-GO]]></Code>
+GO
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>

@@ -37,7 +37,9 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL_SSDT" Delimiter="$"><![CDATA[IF (SELECT TYPE_ID('ext.$TableTypeName$')) IS NOT NULL 
+      <Code Language="SQL_SSDT" Delimiter="$">
+  <![CDATA[
+IF (SELECT TYPE_ID('ext.$TableTypeName$')) IS NOT NULL 
 BEGIN
     /* Si existen referencias al tipo de dato, se deben eliminar primero
 	IF (SELECT OBJECT_ID('ext.StoreProcedureName')) IS NOT NULL 
@@ -59,12 +61,10 @@ CREATE TYPE [ext].[$TableTypeName$] AS TABLE
     $ColumName1$ BIGINT NOT NULL,
     $ColumName2$ NVARCHAR(512) NOT NULL,
 )
-GO
 
+GO
 GRANT EXECUTE ON TYPE::[ext].$TableTypeName$ TO [UsersRole];
-GO
 GRANT EXECUTE ON TYPE::[ext].$TableTypeName$ TO [PublishersRole];
-GO
 GRANT EXECUTE ON TYPE::[ext].$TableTypeName$ TO [DeployExtensibilityRole];
 GO
 ]]></Code>
