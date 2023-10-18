@@ -22,7 +22,7 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL_SSDT" Delimiter="$"><![CDATA[IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
+      <Code Language="sql" Delimiter="$"><![CDATA[IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
 BEGIN
 	DROP TABLE [ext].[$TableName$]
 END
