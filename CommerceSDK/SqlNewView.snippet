@@ -26,22 +26,20 @@
         </Literal>
       </Declarations>
       <Code Language="sql" Delimiter="$"><![CDATA[IF (SELECT OBJECT_ID('ext.$ViewName$')) IS NOT NULL 
-DROP VIEW [ext].$ViewName$
+    DROP VIEW [ext].[$ViewName$]
 GO
 
-Create VIEW [ext].$ViewName$ AS
+CREATE VIEW [ext].[$ViewName$] AS
 (
-    select DISTINCT b.DATAAREAID, a.TAXCODE, a.TAXVALUE, a.TAXITEMGROUP, b.TAXGROUP, a.RECID 
-	from [ext].[AXXTAXONITEMVIEW] a 
-	join [ax].[TAXGROUPDATA] b on a.TAXCODE = b.TAXCODE and a.DATAAREAID = b.DATAAREAID           
+    SELECT
+	FROM
+	INNER JOIN
 )
 
 GO
 -- grant Read permission to [UsersRole]so CDX can function
 GRANT SELECT ON OBJECT::[ext].[$ViewName$] TO [UsersRole]
-GO
 GRANT SELECT ON OBJECT::[ext].[$ViewName$] TO [DeployExtensibilityRole] 
-
 GO]]></Code>
     </Snippet>
   </CodeSnippet>
