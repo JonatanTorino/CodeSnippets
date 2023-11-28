@@ -2,47 +2,49 @@
 <CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
   <CodeSnippet Format="1.0.0">
     <Header>
-      <SnippetTypes>
-        <SnippetType>Expansion</SnippetType>
-      </SnippetTypes>
       <Title>SqlNewTable</Title>
       <Author>Jonatan Torino</Author>
       <Description>Create new table</Description>
-      <HelpUrl>
-      </HelpUrl>
+      <HelpUrl></HelpUrl>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Keywords>
+        <Keyword>SqlNewTable</Keyword>
+      </Keywords>
       <Shortcut>CmmSqlNewTable</Shortcut>
     </Header>
     <Snippet>
+      <References />
+      <Imports />
       <Declarations>
         <Literal Editable="true">
           <ID>TableName</ID>
           <ToolTip>TableName</ToolTip>
           <Default>TableName</Default>
-          <Function>
-          </Function>
+          <Function></Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL_SSDT" Delimiter="$">
-  <![CDATA[
+      <Code Language="SQL" Kind="any" Delimiter="$"><![CDATA[
 IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
 BEGIN
-	DROP TABLE [ext].[$TableName$]
+    DROP TABLE [ext].[$TableName$]
 END
 
 CREATE TABLE [ext].[$TableName$] (
-	[RECID] [bigint] NOT NULL,
-	[DATAAREAID] [nvarchar](4) NOT NULL,
-	CONSTRAINT [I_$TableName$_RECID] PRIMARY KEY CLUSTERED ([RECID] ASC) WITH (
-		PAD_INDEX = OFF
-		,STATISTICS_NORECOMPUTE = OFF
-		,IGNORE_DUP_KEY = OFF
-		,ALLOW_ROW_LOCKS = ON
-		,ALLOW_PAGE_LOCKS = ON
-		) ON [PRIMARY]
-	) ON [PRIMARY]
+    [RECID] [bigint] NOT NULL,
+    [DATAAREAID] [nvarchar](4) NOT NULL,
+    CONSTRAINT [I_$TableName$_RECID] PRIMARY KEY CLUSTERED ([RECID] ASC) WITH (
+        PAD_INDEX = OFF
+        ,STATISTICS_NORECOMPUTE = OFF
+        ,IGNORE_DUP_KEY = OFF
+        ,ALLOW_ROW_LOCKS = ON
+        ,ALLOW_PAGE_LOCKS = ON
+        ) ON [PRIMARY]
+    ) ON [PRIMARY]
 
 ALTER TABLE [ext].[$TableName$]
-	WITH CHECK ADD CHECK (([RECID] <> (0)))
+    WITH CHECK ADD CHECK (([RECID] <> (0)))
 
 GO
 GRANT SELECT,INSERT,UPDATE,DELETE ON OBJECT::[ext].[$TableName$] TO [UsersRole]
