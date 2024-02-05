@@ -69,19 +69,22 @@
           </Type>
         </Object>
       </Declarations>
-      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[        public static async Task<$CommerceEntity$> Get$CommerceEntity$Async(RequestContext context, $parmType$ $parmName$)
+      <Code Language="csharp" Delimiter="$" Kind="method decl">
+              <![CDATA[
+        public static async Task<$CommerceEntity$> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
         {
             $CommerceEntity$ result = null;
 
             using (DatabaseContext databaseContext = new DatabaseContext(context))
             {
-                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.$pagingInfo$))
+                var query = new SqlPagedQuery(new QueryResultSettings(new PagingInfo(1)))
                 {
                     DatabaseSchema = "$schema$",
                     From = "$CommerceEntity$",
-                    Where = "$parmName$ = @$parmName$"
+                    Where = "DataAreaId = @dataAreaId AND $parmName$ = @$parmName$"
                 };
 
+                query.Parameters["@dataAreaId"] = context.GetChannelConfiguration().InventLocationDataAreaId;
                 query.Parameters["@$parmName$"] = $parmName$;
                 PagedResult<$CommerceEntity$> ret = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
                 result = ret.FirstOrDefault();

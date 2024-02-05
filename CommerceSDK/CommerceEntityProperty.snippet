@@ -43,7 +43,8 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="csharp" Kind="type decl" Delimiter="$"><![CDATA[    const string $PropName$Column = nameof($PropName$);
+      <Code Language="csharp" Kind="type decl" Delimiter="$"><![CDATA[    
+    const string $PropName$Column = nameof($PropName$);
     [DataMember]
     [Column($PropName$Column)]
     public $PropType$ $PropName$

@@ -34,6 +34,7 @@ END
 CREATE TABLE [ext].[$TableName$] (
     [RECID] [bigint] NOT NULL,
     [DATAAREAID] [nvarchar](4) NOT NULL,
+    
     CONSTRAINT [I_$TableName$_RECID] PRIMARY KEY CLUSTERED ([RECID] ASC) WITH (
         PAD_INDEX = OFF
         ,STATISTICS_NORECOMPUTE = OFF

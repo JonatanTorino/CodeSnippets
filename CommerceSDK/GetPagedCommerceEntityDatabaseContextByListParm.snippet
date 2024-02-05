@@ -64,7 +64,7 @@
       </Declarations>
       <Code Language="csharp" Delimiter="¿"><![CDATA[        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "PreventSqlInjectionAnalyzer:Expression assgined to SqlPagedQuery.Where should use only literals and constants to prevent SQL injection.", Justification = "the list for IN on WHERE clause is controlled in local method")]
-        public static async Task<PagedResult<¿CommerceEntity¿>> GetList¿CommerceEntity¿Async(RequestContext context, List<string> ¿valueSet¿)
+        public static async Task<PagedResult<¿CommerceEntity¿>> GetList¿CommerceEntity¿(RequestContext context, List<string> ¿valueSet¿)
         {
             PagedResult<¿CommerceEntity¿> result = null;
 

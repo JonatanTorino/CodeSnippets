@@ -25,13 +25,14 @@
           </Function>
         </Literal>
       </Declarations>
-      <Code Language="sql" Delimiter="$"><![CDATA[IF (SELECT OBJECT_ID('ext.$ViewName$')) IS NOT NULL 
+      <Code Language="sql" Delimiter="$"><![CDATA[
+IF (SELECT OBJECT_ID('ext.$ViewName$')) IS NOT NULL 
     DROP VIEW [ext].[$ViewName$]
 GO
 
 CREATE VIEW [ext].[$ViewName$] AS
 (
-    SELECT
+  SELECT
 	FROM
 	INNER JOIN
 )
@@ -40,7 +41,8 @@ GO
 -- grant Read permission to [UsersRole]so CDX can function
 GRANT SELECT ON OBJECT::[ext].[$ViewName$] TO [UsersRole]
 GRANT SELECT ON OBJECT::[ext].[$ViewName$] TO [DeployExtensibilityRole] 
-GO]]></Code>
+GO
+]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
