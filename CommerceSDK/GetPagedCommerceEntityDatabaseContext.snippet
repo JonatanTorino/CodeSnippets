@@ -79,7 +79,7 @@
                 var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.$pagingInfo$))
                 {
                     DatabaseSchema = "$schema$",
-                    From = "$CommerceEntity$",
+                    From = nameof($CommerceEntity$),
                     Where = "$parmName$ = @$parmName$"
                 };
 

@@ -80,7 +80,7 @@
                 var query = new SqlPagedQuery(new QueryResultSettings(new PagingInfo(1)))
                 {
                     DatabaseSchema = "$schema$",
-                    From = "$CommerceEntity$",
+                    From = nameof($CommerceEntity$),
                     Where = "DataAreaId = @dataAreaId AND $parmName$ = @$parmName$"
                 };
 
