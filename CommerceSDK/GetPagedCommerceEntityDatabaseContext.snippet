@@ -80,9 +80,10 @@
                 {
                     DatabaseSchema = "$schema$",
                     From = nameof($CommerceEntity$),
-                    Where = "$parmName$ = @$parmName$"
+                    Where = "DataAreaId = @dataAreaId AND $parmName$ = @$parmName$"
                 };
 
+                query.Parameters["@dataAreaId"] = context.GetChannelConfiguration().InventLocationDataAreaId;
                 query.Parameters["@$parmName$"] = $parmName$;
                 result = await databaseContext.ReadEntityAsync<$CommerceEntity$>(query).ConfigureAwait(false);
             }

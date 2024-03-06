@@ -62,8 +62,7 @@
           </Type>
         </Object>
       </Declarations>
-      <Code Language="csharp" Delimiter="¿">
-                      <![CDATA[        
+      <Code Language="csharp" Delimiter="¿"><![CDATA[        
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "PreventSqlInjectionAnalyzer:Expression assgined to SqlPagedQuery.Where should use only literals and constants to prevent SQL injection.", Justification = "the list for IN on WHERE clause is controlled in local method")]
         public static async Task<PagedResult<¿CommerceEntity¿>> GetList¿CommerceEntity¿(RequestContext context, List<string> ¿valueSet¿)
         {
@@ -76,9 +75,10 @@
                 {
                     DatabaseSchema = "¿schema¿",
                     From = nameof(¿CommerceEntity¿),
-                    Where = $"¿Column¿ IN ({¿valueSet¿Parm})",
+                    Where = $"DataAreaId = @dataAreaId AND ¿Column¿ IN ({¿valueSet¿Parm})",
                 };
 
+                query.Parameters["@dataAreaId"] = context.GetChannelConfiguration().InventLocationDataAreaId;
                 result = await databaseContext.ReadEntityAsync<¿CommerceEntity¿>(query).ConfigureAwait(false);
             }
 

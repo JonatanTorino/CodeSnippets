@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Keywords>
+        <Keyword>SqlNewSPJson</Keyword>
+      </Keywords>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>SqlNewStoreProcedureWithJSON</Title>
+      <Author>Jonatan Torino</Author>
+      <Description>Create new view</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>CmmSqlNewSPJson</Shortcut>
+    </Header>
+    <Snippet>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>StoreProcedureName</ID>
+          <ToolTip>StoreProcedureName</ToolTip>
+          <Default>StoreProcedureName</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>TableName</ID>
+          <ToolTip>TableName</ToolTip>
+          <Default>TableName</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="sql" Delimiter="$">
+        <![CDATA[
+GO
+IF (SELECT OBJECT_ID('ext.$StoreProcedureName$')) IS NOT NULL 
+BEGIN
+	DROP PROCEDURE [ext].[$StoreProcedureName$]
+END
+GO
+
+CREATE PROCEDURE [ext].[$StoreProcedureName$]
+    @jsonSerializedObject NVARCHAR(MAX) 
+AS
+BEGIN
+	-- Create and populate the temporary table in one statement
+	SELECT *
+	INTO #Src
+	FROM OPENJSON(@jsonSerializedObject)
+	WITH (
+        --La deserializacion ES CASE SENSITIVE (solo en este punto)----
+		[RecId] bigint
+		,[DataAreaId] nvarchar(4)
+    --AGREGAR CAMPOS 
+		
+    --IMPORTANTE IMPORTANTE La deserializacion ES CASE SENSITIVE (solo en este punto)----
+	)
+    
+    select * from #Src --Solo para el debug
+
+    INSERT INTO [ext].[$TableName$] (
+            [DATAAREAID]
+            ,[OPERATIONID]
+            --AGREGAR CAMPOS 
+        )
+        SELECT 
+            src.[DATAAREAID]
+            ,src.[OPERATIONID]
+            --AGREGAR CAMPOS 
+		FROM #Src as src
+END
+GO
+
+GRANT EXECUTE ON [ext].[$StoreProcedureName$] TO [UsersRole];
+GRANT EXECUTE ON [ext].[$StoreProcedureName$] TO [PublishersRole];
+GRANT EXECUTE ON [ext].[$StoreProcedureName$] TO [DeployExtensibilityRole];
+GO
+]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

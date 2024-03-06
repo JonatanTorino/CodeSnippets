@@ -84,6 +84,7 @@
             using (SqlServerDatabaseContext databaseContext = new SqlServerDatabaseContext(context))
             {
                 ParameterSet parameters = new ParameterSet();
+                parameters["@dataAreaId"] = context.GetChannelConfiguration().InventLocationDataAreaId;
                 parameters["@$parmName$"] = $parmName$;
 
                 QueryResultSettings queryResultSettings = new QueryResultSettings(PagingInfo.$pagingInfo$);
