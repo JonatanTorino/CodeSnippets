@@ -76,7 +76,7 @@
 
             using (DatabaseContext databaseContext = new DatabaseContext(context))
             {
-                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.$pagingInfo$))
+                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.AllRecords))
                 {
                     DatabaseSchema = "$schema$",
                     From = nameof($CommerceEntity$),

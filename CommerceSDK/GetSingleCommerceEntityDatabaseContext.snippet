@@ -69,15 +69,14 @@
           </Type>
         </Object>
       </Declarations>
-      <Code Language="csharp" Delimiter="$" Kind="method decl">
-              <![CDATA[
+      <Code Language="csharp" Delimiter="$" Kind="method decl"><![CDATA[
         public static async Task<$CommerceEntity$> Get$CommerceEntity$(RequestContext context, $parmType$ $parmName$)
         {
             $CommerceEntity$ result = null;
 
             using (DatabaseContext databaseContext = new DatabaseContext(context))
             {
-                var query = new SqlPagedQuery(new QueryResultSettings(new PagingInfo(1)))
+                var query = new SqlPagedQuery(new QueryResultSettings(PagingInfo.AllRecords))
                 {
                     DatabaseSchema = "$schema$",
                     From = nameof($CommerceEntity$),

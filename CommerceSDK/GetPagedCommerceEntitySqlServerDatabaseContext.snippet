@@ -87,7 +87,7 @@
                 parameters["@dataAreaId"] = context.GetChannelConfiguration().InventLocationDataAreaId;
                 parameters["@$parmName$"] = $parmName$;
 
-                QueryResultSettings queryResultSettings = new QueryResultSettings(PagingInfo.$pagingInfo$);
+                QueryResultSettings queryResultSettings = new QueryResultSettings(PagingInfo.AllRecords);
                 var spResult = await databaseContext.ExecuteStoredProcedureAsync<$CommerceEntity$>("$StoreProcedureName$", parameters, queryResultSettings).ConfigureAwait(false);
                 PagedResult<$CommerceEntity$> spCollectionResult = spResult.Item2;
             }
