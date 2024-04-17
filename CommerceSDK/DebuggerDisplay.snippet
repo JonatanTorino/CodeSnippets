@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <SnippetTypes>
+        <SnippetType>Expansion</SnippetType>
+      </SnippetTypes>
+      <Title>DebuggerDisplay</Title>
+      <Author>Jonatan Torino</Author>
+      <Description>Show relevant properties data on debug</Description>
+      <HelpUrl>
+      </HelpUrl>
+      <Shortcut>DebuggerDisplay</Shortcut>
+    </Header>
+    <Snippet>
+      <Imports>
+        <Import>
+          <Namespace>System.Diagnostics</Namespace>
+        </Import>
+      </Imports>
+      <Declarations>
+        <Literal Editable="true">
+          <ID>PropertyName1</ID>
+          <ToolTip>PropertyName1</ToolTip>
+          <Default>PropertyName1</Default>
+          <Function>
+          </Function>
+        </Literal>
+        <Literal Editable="true">
+          <ID>PropertyName2</ID>
+          <ToolTip>PropertyName2</ToolTip>
+          <Default>PropertyName2</Default>
+          <Function>
+          </Function>
+        </Literal>
+      </Declarations>
+      <Code Language="csharp" Delimiter="$"><![CDATA[[DebuggerDisplay("$PropertyName1$ = {$PropertyName1$}, $PropertyName2$ = {$PropertyName2$}")]]]></Code>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
