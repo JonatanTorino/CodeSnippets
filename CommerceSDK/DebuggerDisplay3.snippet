@@ -5,12 +5,12 @@
       <SnippetTypes>
         <SnippetType>Expansion</SnippetType>
       </SnippetTypes>
-      <Title>DebuggerDisplay</Title>
+      <Title>DebuggerDisplay3</Title>
       <Author>Jonatan Torino</Author>
       <Description>Show relevant properties data on debug</Description>
       <HelpUrl>
       </HelpUrl>
-      <Shortcut>DebuggerDisplay</Shortcut>
+      <Shortcut>DebuggerDisplay3</Shortcut>
     </Header>
     <Snippet>
       <Imports>
@@ -33,8 +33,15 @@
           <Function>
           </Function>
         </Literal>
+        <Literal Editable="true">
+          <ID>PropertyName3</ID>
+          <ToolTip>PropertyName3</ToolTip>
+          <Default>PropertyName3</Default>
+          <Function>
+          </Function>
+        </Literal>
       </Declarations>
-      <Code Language="csharp" Delimiter="$"><![CDATA[[DebuggerDisplay("$PropertyName1$ = {$PropertyName1$}")]]]></Code>
+      <Code Language="csharp" Delimiter="$"><![CDATA[[DebuggerDisplay("$PropertyName1$ = {$PropertyName1$}, $PropertyName2$ = {$PropertyName2$}, $PropertyName3$ = {$PropertyName3$}")]]]></Code>
     </Snippet>
   </CodeSnippet>
 </CodeSnippets>
