@@ -25,7 +25,7 @@
           <Function></Function>
         </Literal>
       </Declarations>
-      <Code Language="SQL" Kind="any" Delimiter="$"><![CDATA[
+      <Code Language="SQL_SSDT" Kind="any" Delimiter="$"><![CDATA[
 IF (SELECT OBJECT_ID('[ext].[$TableName$]')) IS NOT NULL
 BEGIN
     DROP TABLE [ext].[$TableName$]
